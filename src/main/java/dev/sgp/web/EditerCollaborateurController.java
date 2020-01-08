@@ -1,7 +1,6 @@
 package dev.sgp.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,7 @@ public class EditerCollaborateurController extends HttpServlet {
 	ServletException, IOException {
 		// recupere la valeur d'un parametre dont le nom est avecPhoto
 		String matricule = req.getParameter("matricule");
-		if(matricule== null){
+		if(matricule== null || matricule.trim().equals("")){
 			
 			/** Content */
 			resp.setContentType("text/html");
@@ -44,20 +43,20 @@ public class EditerCollaborateurController extends HttpServlet {
 		String prenom = req.getParameter("prenom");
 		
 		String parametresManquants= "";
-		if(matricule== null){
+		if(matricule== null || matricule.trim().equals("")){
 			parametresManquants+="matricule";
 		}
-		if(titre== null){
+		if(titre== null || titre.trim().equals("")){
 			parametresManquants+=" titre";
 		}
-		if(nom== null){
+		if(nom== null || nom.trim().equals("")){
 			parametresManquants+=" nom";
 		}
-		if(prenom== null){
+		if(prenom== null || prenom.trim().equals("")){
 			parametresManquants+=" prenom";
 		}
 		
-		if(parametresManquants!= ""){
+		if("".equals(parametresManquants)){
 			/** Content */
 			resp.setContentType("text/html");
 			/** Code d'erreur 400 */
